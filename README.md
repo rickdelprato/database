@@ -3,8 +3,10 @@
 
 
 ## Schema logico
-Artisti(<u>IdArtista</u>, Cognome, Nome, Pseudonimo, DataNascita, LuogoNascita, DataMorte, LuogoMorte, Stile, NazioneNascita, Biografia)  
-Opere(<u>IdOpera</u>, NomeOpera, Descrizione, PeriodoRealizzazione, Tipologia, Altezza, Proprietario, DetentoreDiritti, LinkVideo)  
+Artisti(<u>IdArtista</u>, Cognome, Nome, Pseudonimo, DataNascita, LuogoNascita, DataMorte, LuogoMorte, Stile, NazioneNascita)  
+Biografia(<u>IdArtista, Lingua</u>, Testo)  
+Opere(<u>IdOpera</u>, NomeOpera, PeriodoRealizzazione, Tipologia, Altezza, Proprietario, DetentoreDiritti, LinkVideo)  
+DescrizioneOpere(<u>IdOpera, Lingua</u>, Testo)  
 Creazioni(<u>Artista, Opera</u>)  
 Posizioni(<u>Latitudine, Longitudine</u>, Indirizzo, Citta, DataCollocazione, Opera)  
 Itinerari(<u>IdItinerario</u>, Nome)  
@@ -18,6 +20,8 @@ Commenti(Utente, Testo)
 
 ## Vincoli
 ### Integrità referenziale
+Biografia(IdArtista) ⊆ Artisti(IdArtista)  
+DescrizioniOpere(IdOpera) ⊆ Opere(IdOpera)  
 Creazioni(Artista) ⊆ Artisti(IdArtista)  
 Creazioni(Opera) ⊆ Opere(IdOpera)  
 Posizioni(Opera) ⊆ Opere(IdOpera)  
