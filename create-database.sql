@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS Biografie (
 CREATE TABLE IF NOT EXISTS Opere (
     IdOpera INT PRIMARY KEY AUTO_INCREMENT,
     NomeOpera VARCHAR(50) NOT NULL,
-    Descrizione TEXT NOT NULL,
     PeriodoRealizzazione VARCHAR(50) NOT NULL,
     Tipologia VARCHAR(50) NOT NULL,
     Altezza INT NOT NULL CHECK (Altezza > 0),
