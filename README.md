@@ -3,19 +3,19 @@
 
 
 ## Schema logico
-Artisti(<u>IdArtista</u>, Cognome, Nome, Pseudonimo, DataNascita, LuogoNascita, DataMorte, LuogoMorte, Stile, NazioneNascita)  
-Biografia(<u>IdArtista, Lingua</u>, Testo)  
-Opere(<u>IdOpera</u>, NomeOpera, PeriodoRealizzazione, Tipologia, Altezza, Proprietario, DetentoreDiritti, LinkVideo)  
-DescrizioneOpere(<u>IdOpera, Lingua</u>, Testo)  
-Creazioni(<u>Artista, Opera</u>)  
-Posizioni(<u>Latitudine, Longitudine</u>, Indirizzo, Citta, DataCollocazione, Opera)  
-Itinerari(<u>IdItinerario</u>, Nome)  
-PercorsiTematici(<u>Opera, Itinerario</u>, NumOrdine)  
-Materiali(<u>IdMateriale</u>, Nome)  
-MaterialiOpere(<u>Opera, Materiale</u>)  
-Foto(<u>IdFoto</u>, Nome, Link, Opera)  
-Soggetti(<u>IdSoggetto</u>, Nome)  
-SoggettiRappresentati(<u>Soggetto, Opera</u>)
+Artisti(<ins>IdArtista</ins>, Cognome, Nome, Pseudonimo, DataNascita, LuogoNascita, DataMorte, LuogoMorte, Stile, NazioneNascita)  
+Biografia(<ins>IdArtista, Lingua</ins>, Testo)  
+Opere(<ins>IdOpera</ins>, NomeOpera, PeriodoRealizzazione, Tipologia, Altezza, Proprietario, DetentoreDiritti, LinkVideo)  
+DescrizioneOpere(<ins>IdOpera, Lingua</ins>, Testo)  
+Creazioni(<ins>Artista, Opera</ins>)  
+Posizioni(<ins>Latitudine, Longitudine</ins>, Indirizzo, Citta, DataCollocazione, Opera)  
+Itinerari(<ins>IdItinerario</ins>, Nome)  
+PercorsiTematici(<ins>Opera, Itinerario</ins>, NumOrdine)  
+Materiali(<ins>IdMateriale</ins>, Nome)  
+MaterialiOpere(<ins>Opera, Materiale</ins>)  
+Foto(<ins>IdFoto</ins>, Nome, Link, Opera)  
+Soggetti(<ins>IdSoggetto</ins>, Nome)  
+SoggettiRappresentati(<ins>Soggetto, Opera</ins>)
 Commenti(Utente, Testo)
 
 ## Vincoli
