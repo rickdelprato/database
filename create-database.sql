@@ -1,3 +1,6 @@
+SET storage_engine=InnoDB;
+SET FOREIGN_KEY_CHECKS=1;
+
 CREATE DATABASE IF NOT EXISTS Opere;
 
 USE Opere;
@@ -7,12 +10,12 @@ CREATE TABLE IF NOT EXISTS Artisti (
     Cognome VARCHAR(50) NOT NULL,
     Nome VARCHAR(50) NOT NULL,
     Pseudonimo VARCHAR(50) NOT NULL,
-    DataNascita DATE NOT NULL CHECK,
+    DataNascita DATE NOT NULL,
     LuogoNascita VARCHAR(50) NOT NULL,
     DataMorte DATE,
     LuogoMorte VARCHAR(50),
     Stile VARCHAR(50) NOT NULL,
-    Nazionalita VARCHAR(50) NOT NULL,
+    Nazionalita VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Biografie (
@@ -31,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Opere (
     Altezza INT NOT NULL CHECK (Altezza > 0),
     Proprietario VARCHAR(50) NOT NULL,
     DetentoreDiritti VARCHAR(50) NOT NULL,
-    LinkVideo VARCHAR(255),
+    LinkVideo VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS DescrizioniOpere (
@@ -63,43 +66,43 @@ CREATE TABLE IF NOT EXISTS Posizioni (
 
 CREATE TABLE IF NOT EXISTS Itinerari (
     IdItinerario INT PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(50) NOT NULL,
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Percorsi (
     Opera INT REFERENCES Opere(IdOpera),
     Itinerario INT REFERENCES Itinerari(IdItinerario),
     NumOrdine INT NOT NULL CHECK (NumOrdine > 0),
-    PRIMARY KEY (Opera, Itinerario),
+    PRIMARY KEY (Opera, Itinerario)
 );
 
 CREATE TABLE IF NOT EXISTS Materiali (
     IdMateriale INT PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(50) NOT NULL,
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS MaterialiOpere (
     IdOpera INT REFERENCES Opere(IdOpera),
     IdMateriale INT REFERENCES Materiali(IdMateriale),
-    PRIMARY KEY (IdOpera, IdMateriale),
+    PRIMARY KEY (IdOpera, IdMateriale)
 );
 
 CREATE TABLE IF NOT EXISTS Foto (
     IdFoto INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50) NOT NULL,
     Link VARCHAR(255) NOT NULL,
-    Opera INT REFERENCES Opere(IdOpera),
+    Opera INT REFERENCES Opere(IdOpera)
 );
 
 CREATE TABLE IF NOT EXISTS Soggetti (
     IdSoggetto INT PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(50) NOT NULL,
+    Nome VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS SoggettiRappresentati (
     IdSoggetto INT REFERENCES Soggetti(IdSoggetto),
     IdOpera INT REFERENCES Opere(IdOpera),
-    PRIMARY KEY (IdSoggetto, IdOpera),
+    PRIMARY KEY (IdSoggetto, IdOpera)
 );
 
 CREATE TABLE if NOT EXISTS Utenti (
@@ -110,7 +113,7 @@ CREATE TABLE if NOT EXISTS Utenti (
     DataRegistrazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Ruolo ENUM('admin', 'user') DEFAULT 'user',
     Attivo BOOLEAN DEFAULT TRUE
-)
+);
 
 CREATE TABLE IF NOT EXISTS Commenti (
     IdCommento INT PRIMARY KEY AUTO_INCREMENT,
@@ -118,4 +121,4 @@ CREATE TABLE IF NOT EXISTS Commenti (
     Testo TEXT NOT NULL,
     DataCommento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (IdUtente) REFERENCES Utenti(IdUtente)
-)
+);
