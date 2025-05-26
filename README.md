@@ -15,8 +15,9 @@ Materiali(<ins>IdMateriale</ins>, Nome)
 MaterialiOpere(<ins>Opera, Materiale</ins>)  
 Foto(<ins>IdFoto</ins>, Nome, Link, Opera)  
 Soggetti(<ins>IdSoggetto</ins>, Nome)  
-SoggettiRappresentati(<ins>Soggetto, Opera</ins>)
-Commenti(Utente, Testo)
+SoggettiRappresentati(<ins>Soggetto, Opera</ins>)  
+Utenti(<ins>IdUtente</ins>, Username, Email, Password, DataRegistrazione, Ruolo, Attivo)
+Commenti(<ins>IdCommento</ins>, IdUtente, Testo, DataCommento)
 
 ## Vincoli
 ### Integrità referenziale
@@ -31,7 +32,8 @@ MaterialiOpere(Opera) ⊆ Opere(IdOpera)
 MaterialiOpere(Materiale) ⊆ Materiali(IdMateriale)  
 Foto(Opera) ⊆ Opere(IdOpera)  
 SoggettiRappresentati(Soggetto) ⊆ Soggetti(IdSoggetto)  
-SoggettiRappresentati(Opera) ⊆ Opere(IdOpera)  
+SoggettiRappresentati(Opera) ⊆ Opere(IdOpera)
+Commenti(IdUtente) ⊆ Utenti(IdUtente)
 
 ### Vincoli di dominio e di tupla
 Artista(DataNascita)<=Artista(DataMorte) OR Artista(DataMorte) IS NULL  
@@ -41,7 +43,6 @@ Opere(Altezza) > 0 OR Opere(Altezza) IS NULL
 -180 <= Posizioni(Longitudine) <= 180  
 PercorsiTematici(NumOrdine) > 0  
 Foto(Link) deve essere un percorso valido  
-
-## Interfaccia database
-
-
+Utenti(Ruolo) ∈ {Amministratore, Utente}
+Utenti(Username) deve essere unico
+Utenti(Email) deve essere unica

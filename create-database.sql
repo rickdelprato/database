@@ -101,3 +101,21 @@ CREATE TABLE IF NOT EXISTS SoggettiRappresentati (
     IdOpera INT REFERENCES Opere(IdOpera),
     PRIMARY KEY (IdSoggetto, IdOpera),
 );
+
+CREATE TABLE if NOT EXISTS Utenti (
+    IdUtente INT PRIMARY KEY AUTO_INCREMENT,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    DataRegistrazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Ruolo ENUM('admin', 'user') DEFAULT 'user',
+    Attivo BOOLEAN DEFAULT TRUE
+)
+
+CREATE TABLE IF NOT EXISTS Commenti (
+    IdCommento INT PRIMARY KEY AUTO_INCREMENT,
+    IdUtente INT REFERENCES Utenti(IdUtente),
+    Testo TEXT NOT NULL,
+    DataCommento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (IdUtente) REFERENCES Utenti(IdUtente)
+)
