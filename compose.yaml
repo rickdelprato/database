@@ -1,0 +1,11 @@
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: miradb
+    env_file: .env
+    ports:
+      - "3306:3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init.sql:/data/application/init.sql
+    restart: unless-stopped
