@@ -1,6 +1,7 @@
 # StatueDoc
 ## Schema concettuale
-
+![slide1](schema/schema.png)
+---
 
 ## Schema logico
 Artisti(<ins>IdArtista</ins>, Cognome, Nome, Pseudonimo, DataNascita, LuogoNascita, DataMorte, LuogoMorte, Stile, NazioneNascita)  
