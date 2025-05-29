@@ -1,6 +1,6 @@
 # StatueDoc
 ## Schema concettuale
-[slide1](schema.png)
+![slide1](schema/schema.png)
 ---
 
 ## Schema logico
