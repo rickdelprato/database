@@ -61,9 +61,8 @@ CREATE TABLE IF NOT EXISTS Posizioni (
     Indirizzo VARCHAR(255) NOT NULL,
     Citta VARCHAR(50) NOT NULL,
     DataCollocazione DATE,
-    IdOpera INT,
-    PRIMARY KEY (Latitudine, Longitudine),
-    FOREIGN KEY (IdOpera) REFERENCES opere(IdOpera)
+    IdOpera INT REFERENCES opere(IdOpera),
+    PRIMARY KEY (Latitudine, Longitudine)
 );
 
 CREATE TABLE IF NOT EXISTS Itinerari (
@@ -122,5 +121,4 @@ CREATE TABLE IF NOT EXISTS Commenti (
     IdUtente INT REFERENCES Utenti(IdUtente),
     Testo TEXT NOT NULL,
     DataCommento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (IdUtente) REFERENCES Utenti(IdUtente)
 );
