@@ -46,3 +46,14 @@ Foto(Link) deve essere un percorso valido
 Utenti(Ruolo) ∈ {Amministratore, Utente}
 Utenti(Username) deve essere unico
 Utenti(Email) deve essere unica
+
+## Come eseguire 
+Per eseguire il database, dopo aver impostato le variabili di ambiente in un file .env, fare:
+```
+docker compose up -d
+```
+
+Per accedere al contaiener:
+```
+docker exec -ti miradb bash
+```
