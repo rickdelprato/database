@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS Posizioni (
     Indirizzo VARCHAR(255) NOT NULL,
     Citta VARCHAR(50) NOT NULL,
     DataCollocazione DATE,
-    IdOpera INT REFERENCES opere(IdOpera),
+    IdOpera INT,
+    FOREIGN KEY (IdOpera) REFERENCES Opere(IdOpera),
     PRIMARY KEY (Latitudine, Longitudine)
 );
 
@@ -72,9 +73,10 @@ CREATE TABLE IF NOT EXISTS Itinerari (
 
 CREATE TABLE IF NOT EXISTS Percorsi (
     Opera INT REFERENCES Opere(IdOpera),
-    Itinerario INT REFERENCES Itinerari(IdItinerario),
+    Itinerario INT NOT NULL,
     NumOrdine INT NOT NULL CHECK (NumOrdine > 0),
-    PRIMARY KEY (Opera, Itinerario)
+    PRIMARY KEY (Opera, Itinerario),
+    FOREIGN KEY (Itinerario) REFERENCES Itinerari(IdItinerario)
 );
 
 CREATE TABLE IF NOT EXISTS Materiali (
@@ -83,16 +85,19 @@ CREATE TABLE IF NOT EXISTS Materiali (
 );
 
 CREATE TABLE IF NOT EXISTS MaterialiOpere (
-    IdOpera INT REFERENCES Opere(IdOpera),
-    IdMateriale INT REFERENCES Materiali(IdMateriale),
-    PRIMARY KEY (IdOpera, IdMateriale)
+    IdOpera INT,
+    IdMateriale INT,
+    PRIMARY KEY (IdOpera, IdMateriale),
+    FOREIGN KEY (IdOpera) REFERENCES Opere(IdOpera),
+    FOREIGN KEY (IdMateriale) REFERENCES Materiali(IdMateriale)
 );
 
 CREATE TABLE IF NOT EXISTS Foto (
     IdFoto INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50) NOT NULL,
     Link VARCHAR(255) NOT NULL,
-    Opera INT REFERENCES Opere(IdOpera)
+    Opera INT NOT NULL,
+    FOREIGN KEY (Opera) REFERENCES Opere(IdOpera)
 );
 
 CREATE TABLE IF NOT EXISTS Soggetti (
@@ -101,9 +106,11 @@ CREATE TABLE IF NOT EXISTS Soggetti (
 );
 
 CREATE TABLE IF NOT EXISTS SoggettiRappresentati (
-    IdSoggetto INT REFERENCES Soggetti(IdSoggetto),
-    IdOpera INT REFERENCES Opere(IdOpera),
-    PRIMARY KEY (IdSoggetto, IdOpera)
+    IdSoggetto INT,
+    IdOpera INT,
+    PRIMARY KEY (IdSoggetto, IdOpera),
+    FOREIGN KEY (IdSoggetto) REFERENCES Soggetti(IdSoggetto),
+    FOREIGN KEY (IdOpera) REFERENCES Opere(IdOpera)
 );
 
 CREATE TABLE if NOT EXISTS Utenti (
@@ -118,7 +125,8 @@ CREATE TABLE if NOT EXISTS Utenti (
 
 CREATE TABLE IF NOT EXISTS Commenti (
     IdCommento INT PRIMARY KEY AUTO_INCREMENT,
-    IdUtente INT REFERENCES Utenti(IdUtente),
+    IdUtente INT NOT NULL,
     Testo TEXT NOT NULL,
     DataCommento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (IdUtente) REFERENCES Utenti(IdUtente)
 );
