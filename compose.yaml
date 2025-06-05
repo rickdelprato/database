@@ -5,7 +5,8 @@ services:
     env_file: .env
     ports:
       - "3306:3306"
-    command: --init-file /data/application/init.sql
     volumes:
-      - ./init.sql:/data/application/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql
+      - ./artisti.sql:/docker-entrypoint-initdb.d/02-artisti.sql
+      - ./opere.sql:/docker-entrypoint-initdb.d/03-opere.sql
     restart: unless-stopped
